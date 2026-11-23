@@ -1,0 +1,78 @@
+#project file manager
+
+# error handling 
+import json
+def load_data():
+    try:
+        with open("utube.txt",'r') as file:
+           test =  json.load(file)  #load the file and convert it into json
+           #print(test)
+           return test
+    except FileNotFoundError:
+        return []
+
+def save_data_helper(videos):
+    with open("utube.txt",'w') as file:
+        json.dump(videos, file)
+
+def list_all_videos(videos):
+    print("\n")
+    print("*" * 50)
+    for index, video in enumerate(videos, start = 1):
+        print(f"{index}. {video['name']}, duration : {video['time']}")
+    print("\n")
+    print("*" * 50)    
+
+def add_video(videos):
+    name = input("enter video name: ")
+    time = input("enter video time: ")
+    videos.append({"name" : name , "time" : time})
+    save_data_helper(videos) 
+
+def update_video(videos):
+    list_all_videos(videos)
+    index = int(input("enter the number to update: "))
+    if 1 <= index <=len(videos):
+        name = input("enter the new video name: ")
+        time = input("enter the new video time: ")
+        videos[index-1] = {'name': name, 'time': time}
+        save_data_helper(videos)
+    else:
+        print("invalid index selected") 
+
+def delete_video(videos):
+    list_all_videos(videos)
+    index = int(input("enter the number to udelete: "))
+    if 1 <= index <=len(videos):
+        del videos[index-1]
+        save_data_helper(videos)
+    else:
+        print("invalid index selected")
+
+def main():
+    videos = load_data()
+    while True:
+        print("\n utube manager | choose an option")
+        print("1. list a fav video")
+        print("2. add a utube video")
+        print("3. update a utube video")
+        print("4. delete a utube video")
+        print("5. exit")
+        choice = input("enter the choice: ")
+        #print(videos)
+        match choice:
+            case '1':
+                list_all_videos(videos)
+            case '2':
+                add_video(videos) 
+            case '3':
+                update_video(videos) 
+            case '4':
+                delete_video(videos) 
+            case '5':
+                break 
+            case _:
+                print("invalid choice")     # new synte 
+            
+if __name__ == "__main__":    #dunder
+    main(
