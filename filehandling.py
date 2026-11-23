@@ -22,3 +22,13 @@ print(file.closed)  # True (confirms the file is safely closed)
 #name='yutube.txt': the file’s name
 #mode='w': it was opened for writing; this mode creates the file or replaces its contents
 #encoding='UTF-8': text is encoded as UTF-8 when written
+
+# METHOD 2: Using 'with' (Context Manager) — RECOMMENDED
+# The 'with' statement automatically closes the file as soon as the block ends,
+# even if an error happens. No need to manually write try/finally or file.close().
+
+with open('yutube.txt', 'w') as file:
+    file.write("altumiya")
+
+# Outside the 'with' block, the file is already closed automatically
+print(file.closed)  # True
