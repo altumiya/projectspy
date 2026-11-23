@@ -32,3 +32,17 @@ with open('yutube.txt', 'w') as file:
 
 # Outside the 'with' block, the file is already closed automatically
 print(file.closed)  # True
+
+# COMMON FILE MODES (Bonus Reference)
+
+# 1. 'a' (Append mode): Adds new text to the end without erasing existing content
+with open('yutube.txt', 'a') as file:
+    file.write("\nAdding a second line!")
+
+# 2. 'r' (Read mode): Opens the file to read its contents (raises FileNotFoundError if missing)
+with open('yutube.txt', 'r') as file:
+    content = file.read()
+    print(content)
+    # Output:
+    # altumiya
+    # Adding a second line!
