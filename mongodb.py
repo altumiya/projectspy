@@ -4,8 +4,6 @@
 from pymongo import MongoClient #so that pymongo repeated use must be stop example below
 from bson import ObjectId
 
-#client = pymongo.MongoClient(mongodb+srv://CHAI:CHAI@cluster0.lxl3fsq.mongodb.net/", tlsAllowInvalidCertificates=True)
-
 client = MongoClient("mongodb+srv://app_admin:SecurePass123!@cluster0.lxl3fsq.mongodb.net/?retryWrites=true&w=majority", tlsAllowInvalidCertificates=True)
 
 db = client["utmanager"] #std approach
